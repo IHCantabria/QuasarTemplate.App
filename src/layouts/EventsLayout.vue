@@ -6,9 +6,7 @@
     Map
   </div>
   <div class="content">
-    <q-page-container>
-      <router-view />
-    </q-page-container>
+    <router-view />
   </div>
 </template>
 <style lang="scss">
@@ -35,10 +33,12 @@
 
 .content {
   position: absolute;
-  bottom: 0;
+  bottom: 56px;
   left: 0;
   right: 0;
   overflow: auto;
-  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 16px 16px 0 0;
+  background-color: rgb(255, 255, 255);
+
 }
 </style>
