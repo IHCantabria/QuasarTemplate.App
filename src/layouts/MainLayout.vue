@@ -35,11 +35,11 @@ const goBack = () => {
     <!-- FOOTER -->
     <q-footer reveal class="mobile-only bg-dark glossy text-white">
       <q-btn-group class="full-width q-pa-xs flex justify-around">
-        <q-btn to="/" stack class="button">
+        <q-btn to="/events" stack class="button">
           <q-icon name="sym_r_home" class="button__icon" />
           <span class="button__text">Home</span>
         </q-btn>
-        <q-btn to="/" stack class="button">
+        <q-btn to="/notifications" stack class="button">
           <q-icon name="sym_r_notifications" class="button__icon" />
           <span class="button__text">Notifications</span>
         </q-btn>
