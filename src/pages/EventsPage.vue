@@ -34,15 +34,12 @@ const onRight = (id) => {
 </script>
 
 <template>
-  <div style="max-width: 400px">
-    <q-list separator>
-      <q-item-label header> Last Events </q-item-label>
-
-      <q-slide-item v-for="event in events" :key="event.id" @right="onRight(event.id)">
+  <div class="q-py-md">
+    <q-list separator style="max-width: 350px">
+      <q-slide-item v-for="event in events" :key="event.id" @right="onRight(event.id)" class="event-card q-mb-sm">
         <template v-slot:right>
           View Details
         </template>
-
         <q-item>
           <q-item-section>
             <q-item-label class="text-bold text-grey-9">
@@ -50,7 +47,6 @@ const onRight = (id) => {
             </q-item-label>
             <q-item-label caption>{{ event.time }}</q-item-label>
           </q-item-section>
-
           <q-item-section side top>
             <q-badge :color="event.color" :label="event.type" class="q-pa-xs" />
           </q-item-section>
@@ -59,4 +55,9 @@ const onRight = (id) => {
     </q-list>
   </div>
 </template>
-<style scoped></style>
+
+<style lang="scss" scoped>
+// .event-card {
+//   background-color: #eee;
+//   border-radius: 8px;
+// }</style>
