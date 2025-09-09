@@ -1,81 +1,71 @@
+<script setup>
+import { useRouter, useRoute } from 'vue-router';
+import EssentialLink from 'components/EssentialLink.vue'
+
+const router = useRouter();
+const route = useRoute();
+const goBack = () => {
+  router.go(-1);
+}
+</script>
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+  <q-layout view="hHr LpR fFr">
+    <!-- HEADER -->
+    <q-header reveal bordered class="bg-white text-dark" height-hint="56">
       <q-toolbar>
-        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-
-        <q-toolbar-title> Quasar App </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
+        <!-- Menu button visible on desktop only -->
+        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" class="q-mx-sm desktop-only" />
+        <q-btn v-if="route.path !== '/'" flat dense round icon="arrow_back" aria-label="Back" @click="goBack" />
+        <!-- Pass the current title page -->
+        <q-toolbar-title>{{ route.meta.title }}</q-toolbar-title>
+        <div class="my-font">v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
-
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
+    <!-- Vertical Menu -->
+    <q-drawer v-model="leftDrawerOpen" side="left" behavior="desktop" elevated>
       <q-list>
-        <q-item-label header> Essential Links </q-item-label>
-
+        <q-item-label header> Menu </q-item-label>
         <EssentialLink v-for="link in linksList" :key="link.title" v-bind="link" />
       </q-list>
     </q-drawer>
-
+    <!-- BODY -->
     <q-page-container>
       <router-view />
     </q-page-container>
+    <!-- FOOTER -->
+    <q-footer reveal class="mobile-only bg-dark glossy text-white">
+      <q-btn-group class="full-width q-pa-xs flex justify-around">
+        <q-btn to="/events" stack class="button">
+          <q-icon name="sym_r_home" class="button__icon" />
+          <span class="button__text">Home</span>
+        </q-btn>
+        <q-btn to="/notifications" stack class="button">
+          <q-icon name="sym_r_notifications" class="button__icon" />
+          <span class="button__text">Notifications</span>
+        </q-btn>
+        <q-btn to="/profile" stack class="button">
+          <q-icon name="sym_r_person" class="button__icon" />
+          <span class="button__text">Profile</span>
+        </q-btn>
+      </q-btn-group>
+    </q-footer>
   </q-layout>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
+<style lang="scss" scoped>
+.button {
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 300;
 
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev',
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework',
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev',
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev',
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev',
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev',
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev',
-  },
-]
+  &__icon {
+    width: 24px;
+    height: 24px;
+  }
 
-const leftDrawerOpen = ref(false)
-
-function toggleLeftDrawer() {
-  leftDrawerOpen.value = !leftDrawerOpen.value
+  &__text {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
 }
-</script>
+</style>

@@ -21,6 +21,16 @@ const routes = [
         ],
       },
       {
+        path: 'notifications',
+        children: [
+          {
+            path: '',
+            component: () => import('pages/NotificationsPage.vue'),
+            meta: { title: 'Notifications' },
+          },
+        ],
+      },
+      {
         path: 'profile',
         children: [
           {

@@ -1,1 +1,20 @@
 // app global css in SCSS form
+
+// Declare font
+@font-face {
+  font-family: customfont;
+  src: url(./fonts/Manrope-VariableFont_wght.ttf);
+}
+
+// declare a class which applies it
+.my-font {
+  font-family: 'customfont';
+}
+
+// apply it to the entire app
+html,
+body {
+  font-family: 'customfont', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
