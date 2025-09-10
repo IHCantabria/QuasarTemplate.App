@@ -15,9 +15,9 @@ const goBack = () => {
       <q-toolbar>
         <!-- Menu button visible on desktop only -->
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" class="q-mx-sm desktop-only" />
-        <q-btn v-if="route.path !== '/'" flat dense round icon="arrow_back" aria-label="Back" @click="goBack" />
+        <q-btn v-if="route?.path !== '/'" flat dense round icon="arrow_back" aria-label="Back" @click="goBack" />
         <!-- Pass the current title page -->
-        <q-toolbar-title>{{ route.meta.title }}</q-toolbar-title>
+        <q-toolbar-title>{{ route.meta.title ?? "" }}</q-toolbar-title>
         <div class="my-font">v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
