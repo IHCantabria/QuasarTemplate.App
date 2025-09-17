@@ -15,70 +15,80 @@ const events = ref([
     title: 'Event 1',
     time: '5 min ago',
     type: 'Tsunami',
-    color: 'red-5'
+    color: 'red-2',
+    textColor: 'red'
   },
   {
     id: 2,
     title: 'Event 2',
     time: '4 hours ago',
     type: 'Tsunami',
-    color: 'red-5'
+    color: 'red-2',
+    textColor: 'red'
   },
   {
     id: 3,
     title: 'Event 3',
     time: '1 day ago',
     type: 'Not Tsunami',
-    color: 'grey-5'
+    color: 'grey-4',
+    textColor: 'grey'
   },
   {
     id: 4,
     title: 'Event 4',
     time: '2 days ago',
     type: 'Tsunami',
-    color: 'red-5'
+    color: 'red-2',
+    textColor: 'red'
   },
   {
     id: 5,
     title: 'Event 5',
     time: '1 week ago',
     type: 'Not Tsunami',
-    color: 'grey-5'
+    color: 'grey-4',
+    textColor: 'grey'
   },
   {
     id: 6,
     title: 'Event 6',
     time: '2 weeks ago',
     type: 'Tsunami',
-    color: 'red-5'
+    color: 'red-2',
+    textColor: 'red'
   },
   {
     id: 7,
     title: 'Event 7',
     time: '1 month ago',
     type: 'Not Tsunami',
-    color: 'grey-5'
+    color: 'grey-4',
+    textColor: 'grey'
   },
   {
     id: 8,
     title: 'Event 8',
     time: '2 months ago',
     type: 'Tsunami',
-    color: 'red-5'
+    color: 'red-2',
+    textColor: 'red'
   },
   {
     id: 9,
     title: 'Event 9',
     time: '3 months ago',
     type: 'Not Tsunami',
-    color: 'grey-5'
+    color: 'grey-4',
+    textColor: 'grey'
   },
   {
     id: 10,
     title: 'Event 10',
     time: '6 months ago',
     type: 'Tsunami',
-    color: 'red-5'
+    color: 'red-2',
+    textColor: 'red'
   }
 ])
 
@@ -108,7 +118,7 @@ const handleSwipe = () => {
           <q-item-label caption>{{ event.time }}</q-item-label>
         </q-item-section>
         <q-item-section side top>
-          <q-badge :color="event.color" :label="event.type" class="q-pa-xs" />
+          <q-badge :color="event.color" :text-color="event.textColor" :label="event.type" class="q-px-sm q-py-xs" />
         </q-item-section>
       </q-item>
     </q-list>
@@ -137,7 +147,7 @@ const handleSwipe = () => {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: $blue-grey-5;
+  color: $blue-grey-4;
 
   &:hover {
     color: $blue-grey-6;
@@ -149,7 +159,7 @@ const handleSwipe = () => {
 
 
 .event-card {
-  background-color: #eee;
+  background-color: $grey-2;
   border-radius: 8px;
   width: 100%;
 }
