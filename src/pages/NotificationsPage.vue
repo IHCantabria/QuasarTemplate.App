@@ -1,5 +1,11 @@
 <script setup>
+import { useRouter } from 'vue-router'
 import { ref, computed } from 'vue'
+
+const router = useRouter()
+const onEventClick = (eventId) => {
+  router.push(`/events/${eventId}`)
+}
 
 const notifications = ref([
   {
@@ -61,29 +67,26 @@ const notifications = ref([
 ])
 
 const todayNotifications = computed(() =>
-  // If more than 1 day ago, do not show
   notifications.value.filter(notification => notification.days <= 1)
 )
 
 const lastWeekNotifications = computed(() =>
-  // If more than 1 day ago and less than or equal to 7 days ago, show
   notifications.value.filter(notification => notification.days > 1 && notification.days <= 7)
 )
 
 const olderNotifications = computed(() =>
-  // If more than 7 days ago, show
   notifications.value.filter(notification => notification.days > 7)
 )
 
 </script>
 
 <template>
-  <div class="q-pa-md q-gutter-md">
+  <div class="q-pa-md">
     <!-- list only today's notifications based on timestamp -->
-    <q-list style="max-width: 350px">
+    <q-list style="width: 100%; max-width: 350px">
       <q-item-label class="text-subtitle2 text-bold text-uppercase text-grey-7 q-py-md"> Today </q-item-label>
       <q-item v-for="notification in todayNotifications" :key="notification.id" clickable v-ripple
-        class="notification-card q-pa-md q-mb-sm">
+        @click="onEventClick(notification.id)" class="notification-card q-pa-md q-mb-sm">
         <q-item-section>
           <q-item-label class="text-bold text-grey-9">{{ notification.title }}</q-item-label>
           <q-item-label lines>{{ notification.body }}</q-item-label>
@@ -97,7 +100,7 @@ const olderNotifications = computed(() =>
     <q-list style="max-width: 350px" class="q-mt-lg">
       <q-item-label class="text-subtitle2 text-bold text-uppercase text-grey-7 q-py-md"> Last Week </q-item-label>
       <q-item v-for="notification in lastWeekNotifications" :key="notification.id" clickable v-ripple
-        class="notification-card q-pa-md q-mb-sm">
+        @click="onEventClick(notification.id)" class="notification-card q-pa-md q-mb-sm">
         <q-item-section>
           <q-item-label class="text-bold text-grey-9">{{ notification.title }}</q-item-label>
           <q-item-label lines>{{ notification.body }}</q-item-label>
@@ -111,7 +114,7 @@ const olderNotifications = computed(() =>
     <q-list style="max-width: 350px" class="q-mt-lg">
       <q-item-label class="text-subtitle2 text-bold text-uppercase text-grey-7 q-py-md"> Older </q-item-label>
       <q-item v-for="notification in olderNotifications" :key="notification.id" clickable v-ripple
-        class="notification-card q-pa-md q-mb-sm">
+        @click="onEventClick(notification.id)" class="notification-card q-pa-md q-mb-sm">
         <q-item-section>
           <q-item-label class="text-bold text-grey-9">{{ notification.title }}</q-item-label>
           <q-item-label lines>{{ notification.body }}</q-item-label>
@@ -126,7 +129,7 @@ const olderNotifications = computed(() =>
 
 <style lang="scss" scoped>
 .notification-card {
-  background-color: #eee;
+  background-color: $grey-2;
   border-radius: 8px;
 }
 </style>
