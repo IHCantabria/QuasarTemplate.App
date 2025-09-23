@@ -21,7 +21,7 @@ const logout = () => {
     <!-- Supporters club membership -->
     <div class="membership-container q-mt-md q-mb-lg">
       <div class="membership-container__icon">
-        <img src="public/icons/medal-star.svg" alt="Medal Star" class="medal-icon" />
+        <img src="icons/medal-star.svg" alt="Medal Star" class="medal-icon" />
       </div>
       <div class="membership-container__text">
         <p class="title">Suporters’ Club Membership</p>
