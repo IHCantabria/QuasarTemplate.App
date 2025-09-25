@@ -1,17 +1,14 @@
 <script setup>
-import { useLayoutsStore } from 'src/stores/layouts-store';
-import { ref } from 'vue';
-import { useRoute } from 'vue-router';
-const toggleButtons = ref('one');
-const toggleTsunamis = ref(true);
+import { useLayoutsStore } from 'src/stores/layouts-store'
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+const toggleButtons = ref('one')
+const toggleTsunamis = ref(true)
 
-const selected = ref('arrival-time');
+const selected = ref('arrival-time')
 
-const route = useRoute();
-const layoutsStore = useLayoutsStore();
-
-
-
+const route = useRoute()
+const layoutsStore = useLayoutsStore()
 </script>
 
 <template>
@@ -20,31 +17,47 @@ const layoutsStore = useLayoutsStore();
     <!-- show only on events page -->
     <div v-if="route.meta.title == 'Events'" class="header flex row justify-center items-center">
       <div class="toggle-button-container">
-        <q-btn-toggle v-model="toggleButtons" color="transparent" text-color="white-6" toggle-color="blue-grey-1"
-          toggle-text-color="primary" spread class="my-custom-toggle" no-caps unelevated :options="[
+        <q-btn-toggle
+          v-model="toggleButtons"
+          color="transparent"
+          text-color="white-6"
+          toggle-color="blue-grey-1"
+          toggle-text-color="primary"
+          spread
+          class="my-custom-toggle"
+          no-caps
+          unelevated
+          :options="[
             { label: 'Recent', value: 'one' },
-            { label: 'Magnitude', value: 'two' }
-          ]" />
+            { label: 'Magnitude', value: 'two' },
+          ]"
+        />
       </div>
       <div class="toggle-container">
-        <q-toggle v-model="toggleTsunamis" :label="toggleTsunamis ? 'Tsunamis' : 'All events'"
-          class="q-mx-md toggle-label" />
+        <q-toggle
+          v-model="toggleTsunamis"
+          :label="toggleTsunamis ? 'Tsunamis' : 'All events'"
+          class="q-mx-md toggle-label"
+        />
       </div>
     </div>
     <!-- show only on event detail page -->
     <div v-else class="header flex row justify-center items-center">
       <div class="simulation-layers">
         <!-- <q-option-group :options="options" type="radio" v-model="selected" inline class="my-custom-radio" /> -->
-        <q-radio v-model="selected" val="arrival-time" label="Arrival Time" class="my-custom-radio" />
+        <q-radio
+          v-model="selected"
+          val="arrival-time"
+          label="Arrival Time"
+          class="my-custom-radio"
+        />
         <q-radio v-model="selected" val="max-height" label="Max. Height" class="my-custom-radio" />
       </div>
     </div>
   </div>
 
   <!-- MAP -->
-  <div class="map" :class="layoutsStore.isEventsListExpanded ? 'map--hidden' : ''">
-    Map
-  </div>
+  <div class="map" :class="layoutsStore.isEventsListExpanded ? 'map--hidden' : ''">Map</div>
 
   <!-- CONTENT -->
   <div class="content" :class="layoutsStore.isEventsListExpanded ? 'content--full-height' : ''">
@@ -102,7 +115,9 @@ const layoutsStore = useLayoutsStore();
   width: 100%;
   background-color: $blue-grey-3;
   z-index: -5;
-  transition: height 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  transition:
+    height 0.3s ease-in-out,
+    visibility 0.3s ease-in-out;
 
   &--hidden {
     height: 0;

@@ -1,11 +1,11 @@
 <script setup>
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router'
 import EssentialLink from 'components/EssentialLink.vue'
 
-const router = useRouter();
-const route = useRoute();
+const router = useRouter()
+const route = useRoute()
 const goBack = () => {
-  router.go(-1);
+  router.go(-1)
 }
 </script>
 <template>
@@ -14,10 +14,25 @@ const goBack = () => {
     <q-header reveal bordered class="bg-white text-dark" height-hint="56">
       <q-toolbar>
         <!-- Menu button visible on desktop only -->
-        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" class="q-mx-sm desktop-only" />
-        <q-btn v-if="route?.path !== '/'" flat dense round icon="arrow_back" aria-label="Back" @click="goBack" />
+        <q-btn
+          dense
+          flat
+          round
+          icon="menu"
+          @click="toggleLeftDrawer"
+          class="q-mx-sm desktop-only"
+        />
+        <q-btn
+          v-if="route?.path !== '/'"
+          flat
+          dense
+          round
+          icon="arrow_back"
+          aria-label="Back"
+          @click="goBack"
+        />
         <!-- Pass the current title page -->
-        <q-toolbar-title>{{ route.meta.title ?? "" }}</q-toolbar-title>
+        <q-toolbar-title>{{ route.meta.title ?? '' }}</q-toolbar-title>
         <div class="my-font">v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>

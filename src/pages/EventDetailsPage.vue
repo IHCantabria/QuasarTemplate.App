@@ -6,7 +6,9 @@
   <div class="q-pa-md">
     <div class="flex justify-between items-top">
       <q-item-section>
-        <q-item-label class="text-h6 text-bold text-grey-9"> Event {{ $route.params.id }} </q-item-label>
+        <q-item-label class="text-h6 text-bold text-grey-9">
+          Event {{ $route.params.id }}
+        </q-item-label>
         <q-item-label lines> 03/08/2025 03:42 </q-item-label>
       </q-item-section>
       <q-item-section side top>
@@ -15,7 +17,7 @@
     </div>
     <q-item-section>
       <div class="custom-card custom-card--horizontal bg-orange text-white">
-        <p class="text-h7 text-weight-medium q-mb-xs"> Tectonic Data </p>
+        <p class="text-h7 text-weight-medium q-mb-xs">Tectonic Data</p>
         <div class="custom-card__content">
           <div class="item">
             <p class="label">Magnitude</p>
@@ -33,7 +35,7 @@
     </q-item-section>
     <q-item-section>
       <div class="custom-card custom-card--vertical text-grey-9">
-        <p class="text-h7 text-weight-bold q-mb-xs"> Location Data </p>
+        <p class="text-h7 text-weight-bold q-mb-xs">Location Data</p>
         <div class="custom-card__content">
           <div class="item">
             <p class="label">Latitude:</p>
@@ -58,7 +60,6 @@
   padding: 1rem;
   margin-top: 0.75rem;
 
-
   &--vertical {
     flex-direction: column;
     padding: 0.75rem 0;
@@ -81,9 +82,7 @@
           font-weight: 600;
         }
       }
-
     }
-
   }
 
   &--horizontal {
@@ -111,14 +110,12 @@
         }
       }
 
-
       .separator {
         width: 1px;
         background-color: rgba(255, 254, 254, 0.5);
         margin: 0 1rem;
       }
     }
-
   }
 }
 </style>

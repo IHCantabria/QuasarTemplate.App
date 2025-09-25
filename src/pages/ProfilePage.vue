@@ -1,11 +1,9 @@
 <script setup>
-import { ref } from 'vue';
-const notificationsEnabled = ref(true);
+import { ref } from 'vue'
+const notificationsEnabled = ref(true)
 const logout = () => {
-  console.log('Logging out...');
-};
-
-
+  console.log('Logging out...')
+}
 </script>
 <template>
   <div class="q-pa-md q-gutter-md">
@@ -25,25 +23,46 @@ const logout = () => {
       </div>
       <div class="membership-container__text">
         <p class="title">Suporters’ Club Membership</p>
-        <p class="subtitle">As a Suporter´Club member, you have access to the extended IH-Tsusy service, which
-          provides immediate visualization of simulations right after they are executed.</p>
+        <p class="subtitle">
+          As a Suporter´Club member, you have access to the extended IH-Tsusy service, which
+          provides immediate visualization of simulations right after they are executed.
+        </p>
       </div>
     </div>
 
     <!-- Options menu -->
     <div class="profile-menu q-my-md">
-      <q-toggle class="profile-menu__item profile-menu__item--toggle" label="Notifications" left-label
-        v-model="notificationsEnabled" />
+      <q-toggle
+        class="profile-menu__item profile-menu__item--toggle"
+        label="Notifications"
+        left-label
+        v-model="notificationsEnabled"
+      />
       <q-separator />
-      <q-btn flat class="profile-menu__item profile-menu__item--link" to="profile/about" label="About">
+      <q-btn
+        flat
+        class="profile-menu__item profile-menu__item--link"
+        to="profile/about"
+        label="About"
+      >
         <q-icon name="sym_arrow_forward_ios" class="item__icon" />
       </q-btn>
       <q-separator />
-      <q-btn flat class="profile-menu__item profile-menu__item--link" to="profile/disclaimer" label="Disclaimer">
+      <q-btn
+        flat
+        class="profile-menu__item profile-menu__item--link"
+        to="profile/disclaimer"
+        label="Disclaimer"
+      >
         <q-icon name="sym_arrow_forward_ios" class="item__icon" />
       </q-btn>
-      <q-btn class="profile-menu__item profile-menu__item--button q-mt-md" color="primary" icon="sym_r_logout"
-        label="Logout" @click="logout"></q-btn>
+      <q-btn
+        class="profile-menu__item profile-menu__item--button q-mt-md"
+        color="primary"
+        icon="sym_r_logout"
+        label="Logout"
+        @click="logout"
+      ></q-btn>
     </div>
   </div>
 </template>
@@ -126,7 +145,6 @@ const logout = () => {
         font-size: 16px;
         color: $grey-6;
       }
-
     }
 
     &--button {
@@ -135,7 +153,6 @@ const logout = () => {
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-
   }
 }
 </style>

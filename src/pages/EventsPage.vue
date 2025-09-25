@@ -16,7 +16,7 @@ const events = ref([
     time: '5 min ago',
     type: 'Tsunami',
     color: 'red-2',
-    textColor: 'red'
+    textColor: 'red',
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const events = ref([
     time: '4 hours ago',
     type: 'Tsunami',
     color: 'red-2',
-    textColor: 'red'
+    textColor: 'red',
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const events = ref([
     time: '1 day ago',
     type: 'Not Tsunami',
     color: 'grey-4',
-    textColor: 'grey'
+    textColor: 'grey',
   },
   {
     id: 4,
@@ -40,7 +40,7 @@ const events = ref([
     time: '2 days ago',
     type: 'Tsunami',
     color: 'red-2',
-    textColor: 'red'
+    textColor: 'red',
   },
   {
     id: 5,
@@ -48,7 +48,7 @@ const events = ref([
     time: '1 week ago',
     type: 'Not Tsunami',
     color: 'grey-4',
-    textColor: 'grey'
+    textColor: 'grey',
   },
   {
     id: 6,
@@ -56,7 +56,7 @@ const events = ref([
     time: '2 weeks ago',
     type: 'Tsunami',
     color: 'red-2',
-    textColor: 'red'
+    textColor: 'red',
   },
   {
     id: 7,
@@ -64,7 +64,7 @@ const events = ref([
     time: '1 month ago',
     type: 'Not Tsunami',
     color: 'grey-4',
-    textColor: 'grey'
+    textColor: 'grey',
   },
   {
     id: 8,
@@ -72,7 +72,7 @@ const events = ref([
     time: '2 months ago',
     type: 'Tsunami',
     color: 'red-2',
-    textColor: 'red'
+    textColor: 'red',
   },
   {
     id: 9,
@@ -80,7 +80,7 @@ const events = ref([
     time: '3 months ago',
     type: 'Not Tsunami',
     color: 'grey-4',
-    textColor: 'grey'
+    textColor: 'grey',
   },
   {
     id: 10,
@@ -88,8 +88,8 @@ const events = ref([
     time: '6 months ago',
     type: 'Tsunami',
     color: 'red-2',
-    textColor: 'red'
-  }
+    textColor: 'red',
+  },
 ])
 
 const toggleList = () => {
@@ -102,15 +102,26 @@ const handleSwipe = () => {
 </script>
 
 <template>
-  <div v-touch-swipe.mouse.up.down="handleSwipe" class="q-pa-md events-container"
-    :class="layoutsStore.isEventsListExpanded ? 'full-height' : ''">
+  <div
+    v-touch-swipe.mouse.up.down="handleSwipe"
+    class="q-pa-md events-container"
+    :class="layoutsStore.isEventsListExpanded ? 'full-height' : ''"
+  >
     <!-- add expand event on swipe top -->
     <button @click="toggleList" class="my-button q-mb-sm">
-      <q-icon :name="layoutsStore.isEventsListExpanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'" />
+      <q-icon
+        :name="layoutsStore.isEventsListExpanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'"
+      />
     </button>
     <q-list style="width: 100%; max-width: 350px">
-      <q-item v-for="event in events" :key="event.id" clickable v-ripple @click="onEventClick(event.id)"
-        class="event-card q-pa-md q-mb-sm">
+      <q-item
+        v-for="event in events"
+        :key="event.id"
+        clickable
+        v-ripple
+        @click="onEventClick(event.id)"
+        class="event-card q-pa-md q-mb-sm"
+      >
         <q-item-section>
           <q-item-label class="text-bold text-grey-9">
             {{ event.title }}
@@ -118,7 +129,12 @@ const handleSwipe = () => {
           <q-item-label caption>{{ event.time }}</q-item-label>
         </q-item-section>
         <q-item-section side top>
-          <q-badge :color="event.color" :text-color="event.textColor" :label="event.type" class="q-px-sm q-py-xs" />
+          <q-badge
+            :color="event.color"
+            :text-color="event.textColor"
+            :label="event.type"
+            class="q-px-sm q-py-xs"
+          />
         </q-item-section>
       </q-item>
     </q-list>
@@ -156,7 +172,6 @@ const handleSwipe = () => {
     transition: transform 0.2s;
   }
 }
-
 
 .event-card {
   background-color: $grey-2;
