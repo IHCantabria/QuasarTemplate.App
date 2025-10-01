@@ -33,9 +33,8 @@ onMounted(async () => {
 
 <template>
   <q-page class="column flex flex-center bg-gradient">
-    <img alt="IH-TSUSY logo" src="~assets/ihtsusy-logo.png" style="width: 120px; height: auto" />
-    <h1 class="text-h5 text-center q-mt-md"> IH-Tsunami System </h1>
-    <!-- <q-btn @click="enterApp" rounded color="secondary" label="Go to Events Page" class="q-mt-md text-capitalize" /> -->
+    <img alt="App logo" src="~assets/quasar-logo-vertical.SVG" style="width: 120px; height: auto" />
+    <h1 class="text-h5 text-center q-mt-md"> App Name </h1>
   </q-page>
 </template>
 

@@ -6,27 +6,27 @@
   <div class="q-pa-md">
     <div class="flex justify-between items-top">
       <q-item-section>
-        <q-item-label class="text-h6 text-bold text-grey-9"> Event {{ $route.params.id }} </q-item-label>
-        <q-item-label lines> 03/08/2025 03:42 </q-item-label>
+        <q-item-label class="text-h6 text-bold text-grey-9"> Item {{ $route.params.id }} </q-item-label>
+        <q-item-label lines> 2025-06-10 10:00 AM </q-item-label>
       </q-item-section>
       <q-item-section side top>
-        <q-badge color="red-2" label="Tsunami" class="q-px-sm q-py-xs text-red" />
+        <q-badge color="red-2" label="Status 1" class="q-px-sm q-py-xs text-red" />
       </q-item-section>
     </div>
     <q-item-section>
       <div class="custom-card custom-card--horizontal bg-orange text-white">
-        <p class="text-h7 text-weight-medium q-mb-xs"> Tectonic Data </p>
+        <p class="text-h7 text-weight-medium q-mb-xs"> Item Data </p>
         <div class="custom-card__content">
           <div class="item">
-            <p class="label">Magnitude</p>
-            <p class="value">7.8</p>
+            <p class="label">Value</p>
+            <p class="value">0.0</p>
           </div>
 
           <div class="separator"></div>
 
           <div class="item">
-            <p class="label">Depth</p>
-            <p class="value">15 km</p>
+            <p class="label">Value</p>
+            <p class="value">0.0</p>
           </div>
         </div>
       </div>
@@ -37,15 +37,15 @@
         <div class="custom-card__content">
           <div class="item">
             <p class="label">Latitude:</p>
-            <p class="value">38.322</p>
+            <p class="value">0.0000</p>
           </div>
           <div class="item">
             <p class="label">Longitude:</p>
-            <p class="value">142.369</p>
+            <p class="value">0.0000</p>
           </div>
           <div class="item">
-            <p class="label">Epicenter:</p>
-            <p class="value">Near the east coast of Honshu, Japan</p>
+            <p class="label">Location:</p>
+            <p class="value">Loren ipsun dolor sit ament</p>
           </div>
         </div>
       </div>

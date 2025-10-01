@@ -1,4 +1,4 @@
-# Tsusy App (ih-tsusy)
+# Tsusy App (app-name)
 
 A Quasar Project
 
