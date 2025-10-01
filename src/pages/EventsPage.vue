@@ -12,81 +12,81 @@ const onEventClick = (eventId) => {
 const events = ref([
   {
     id: 1,
-    title: 'Event 1',
-    time: '5 min ago',
-    type: 'Tsunami',
+    title: 'Item Title',
+    time: 'Item description',
+    type: 'Status',
     color: 'red-2',
     textColor: 'red'
   },
   {
     id: 2,
-    title: 'Event 2',
-    time: '4 hours ago',
-    type: 'Tsunami',
+    title: 'Item Title',
+    time: 'Item description',
+    type: 'Status',
     color: 'red-2',
     textColor: 'red'
   },
   {
     id: 3,
-    title: 'Event 3',
-    time: '1 day ago',
-    type: 'Not Tsunami',
+    title: 'Item Title',
+    time: 'Item description',
+    type: 'Status',
     color: 'grey-4',
     textColor: 'grey'
   },
   {
     id: 4,
-    title: 'Event 4',
-    time: '2 days ago',
-    type: 'Tsunami',
+    title: 'Item Title',
+    time: 'Item description',
+    type: 'Status',
     color: 'red-2',
     textColor: 'red'
   },
   {
     id: 5,
-    title: 'Event 5',
-    time: '1 week ago',
-    type: 'Not Tsunami',
+    title: 'Item Title',
+    time: 'Item description',
+    type: 'Status',
     color: 'grey-4',
     textColor: 'grey'
   },
   {
     id: 6,
-    title: 'Event 6',
-    time: '2 weeks ago',
-    type: 'Tsunami',
+    title: 'Item Title',
+    time: 'Item description',
+    type: 'Status',
     color: 'red-2',
     textColor: 'red'
   },
   {
     id: 7,
-    title: 'Event 7',
-    time: '1 month ago',
-    type: 'Not Tsunami',
+    title: 'Item Title',
+    time: 'Item description',
+    type: 'Status',
     color: 'grey-4',
     textColor: 'grey'
   },
   {
     id: 8,
-    title: 'Event 8',
-    time: '2 months ago',
-    type: 'Tsunami',
+    title: 'Item Title',
+    time: 'Item description',
+    type: 'Status',
     color: 'red-2',
     textColor: 'red'
   },
   {
     id: 9,
-    title: 'Event 9',
-    time: '3 months ago',
-    type: 'Not Tsunami',
+    title: 'Item Title',
+    time: 'Item description',
+    type: 'Status',
     color: 'grey-4',
     textColor: 'grey'
   },
   {
     id: 10,
-    title: 'Event 10',
-    time: '6 months ago',
-    type: 'Tsunami',
+    title: 'Item Title',
+    time: 'Item description',
+    type: 'Status',
     color: 'red-2',
     textColor: 'red'
   }
@@ -105,7 +105,7 @@ const handleSwipe = () => {
   <div v-touch-swipe.mouse.up.down="handleSwipe" class="q-pa-md events-container"
     :class="layoutsStore.isEventsListExpanded ? 'full-height' : ''">
     <!-- add expand event on swipe top -->
-    <button @click="toggleList" class="my-button q-mb-sm">
+    <button @click="toggleList" class="my-button q-mb-sm mobile-only" aria-label="Expand/Collapse events list">
       <q-icon :name="layoutsStore.isEventsListExpanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'" />
     </button>
     <q-list style="width: 100%; max-width: 350px">
