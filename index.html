@@ -17,6 +17,14 @@
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png" />
     <link rel="icon" type="image/ico" href="favicon.ico" />
+    <% if (ctx.mode.spa) { %>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=0"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <% } %>
   </head>
   <body>
     <!-- quasar:entry-point -->

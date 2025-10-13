@@ -31,3 +31,19 @@ yarn-error.log*
 
 # local .env files
 .env.local*
+
+# Build output
+/build
+
+# SonarQube
+*sonar.ps1
+.sonar
+.scannerwork
+
+#Trivy
+.trivy
+*trivy.ps1
+trivy-reports
+trivy-temp-download
+
+

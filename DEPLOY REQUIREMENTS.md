@@ -8,7 +8,7 @@
 
 ## App Template
 
-    - Release
+    - Quasar
 
 ## System
 
@@ -30,7 +30,7 @@ _Development_
 
 ## Distribution
 
-    - Release
+    - Compilation
 
 ## Settings site
 
@@ -42,11 +42,9 @@ _Development_
     - enable32BitAppOnWin64_pool: 'false'
     - managedPipeLineMode_pool: 'integrated'
     - iiswin_aut: 'no'
-    - thredds_whitelist: 'si'
+    - thredds_whitelist: 'no'
 
 ## LOG
-
-    - log: 'no'
 
 ## Url GIT
 
@@ -64,6 +62,14 @@ _Development_
 
     - quasardemodev.ihcantabria.com/path
 
+## COMPILATION SCRIPT PROFILES
+
+El Fichero package.json tiene los scripts de compilación.
+
+_Development_
+
+    - npm run build:dev:pwa
+
 ## Other settings
 
 Select only if needed:
@@ -80,14 +86,10 @@ Select only if needed:
 
     - Tags
     - Snapshot
-    - Clone/Backup
 
 ---
 
 **Do you need any other configuration?**
-
-- app_name here must be equal to name property inside package.json
-- Descargar Release: https://api.github.com/repos/IHCantabria/app_name/releases/tags/app_name-{{ version }}-{{ entorno }}.zip
 
 <br>
 
@@ -95,7 +97,7 @@ Select only if needed:
 
 **What applications, services, or data sources is this application related to?**
 
-`_______________________________________________________________________________`
+Ninguna
 
 ## Credits
 
@@ -103,4 +105,4 @@ Select only if needed:
 
 ## FAQ
 
-- Document provided by the system administrators [David del Prado](https://ihcantabria.com/directorio-personal/david-del-prado-secadas/) y [Luis Gutierrez](https://ihcantabria.com/directorio-personal/luis-gutierrez/)
+- Document provided by the system administrators [David del Prado](https://ihcantabria.com/directorio-personal/david-del-prado-secadas/)

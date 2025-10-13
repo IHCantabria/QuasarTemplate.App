@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 const notificationsEnabled = ref(true)
 const logout = () => {
-  console.log('Logging out...')
+  if (process.env.DEBUGGING) console.log('Logging out...')
 }
 </script>
 <template>

@@ -7,17 +7,17 @@ const router = useRouter()
 const requestNotificationPermission = async () => {
   // Verify if browser supports notifications
   if (!('Notification' in window)) {
-    console.log('Notifications not supported.')
+    if (process.env.DEBUGGING) console.log('Notifications not supported.')
     return
   }
 
   const promise = Notification.requestPermission()
   await promise.then((permission) => {
     if (permission === 'granted') {
-      console.log('Notification permission granted.')
+      if (process.env.DEBUGGING) console.log('Notification permission granted.')
       new Notification('TSUSY', { body: 'This is a test notification.' })
     } else {
-      console.log('Notification permission denied.')
+      if (process.env.DEBUGGING) console.log('Notification permission denied.')
     }
   })
 }

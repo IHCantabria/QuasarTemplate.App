@@ -2,8 +2,33 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file
 
 import { defineConfig } from '#q-app/wrappers'
+import zlib from 'node:zlib'
+import { dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-export default defineConfig((/* ctx */) => {
+// Import custom build utilities
+import { createCopyWebConfigPlugin } from './build-plugins/copy-web-config-plugin.js'
+import { extendViteConfiguration } from './build-plugins/vite-config.js'
+import {
+  getEnvironment,
+  getExistingEnvFiles,
+  getAppVersion,
+  ENV_CONFIG,
+} from './build-plugins/environment-utils.js'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
+export default defineConfig((ctx) => {
+  const environment = getEnvironment(ctx)
+  const quasarMode = ctx.modeName || 'spa'
+  const distFolder = `build/${environment}`
+  const appVersion = getAppVersion(__dirname)
+  const envFiles = getExistingEnvFiles(environment, quasarMode, __dirname)
+
+  console.log(`Building for environment: ${environment}`)
+  console.log('Env files to load:', envFiles)
+
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
@@ -17,27 +42,21 @@ export default defineConfig((/* ctx */) => {
     css: ['app.scss'],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
-    extras: [
-      // 'ionicons-v4',
-      // 'mdi-v7',
-      // 'fontawesome-v6',
-      // 'eva-icons',
-      // 'themify',
-      // 'line-awesome',
-      // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
-      'material-symbols-rounded',
-      'roboto-font', // optional, you are not bound to it
-      'material-icons', // optional, you are not bound to it
-    ],
+    extras: ['material-symbols-rounded', 'material-icons'],
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#build
     build: {
+      // Disable automatic .env loading to use our custom logic
+      envFolder: 'src',
+      // Custom .env files loaded in order (base -> specific)
+      envFiles: envFiles,
+
       target: {
         browser: ['es2022', 'firefox115', 'chrome115', 'safari14'],
-        node: 'node20',
+        node: 'node22',
       },
 
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      vueRouterMode: 'hash',
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
@@ -51,28 +70,78 @@ export default defineConfig((/* ctx */) => {
       // ignorePublicFolder: true,
       // minify: false,
       // polyfillModulePreload: true,
-      // distDir
+      distDir: distFolder,
 
-      // extendViteConf (viteConf) {},
+      // Custom Vite configuration
+      extendViteConf: extendViteConfiguration,
       // viteVuePluginOptions: {},
 
+      // Environment-specific build options
+      ...ENV_CONFIG[environment],
+
+      // Additional environment variables available to the app
+      env: {
+        VITE_ENVIRONMENT: environment,
+        VITE_BUILD_TIME: new Date().toISOString(),
+        VITE_APP_VERSION: appVersion,
+      },
+
       vitePlugins: [
+        // ESLint checker (development only)
+        ...(environment === 'dev'
+          ? [
+              [
+                'vite-plugin-checker',
+                {
+                  eslint: {
+                    lintCommand: 'eslint -c ./eslint.config.js "./src*/**/*.{js,mjs,cjs,vue}"',
+                    useFlatConfig: true,
+                  },
+                },
+                { server: false },
+              ],
+            ]
+          : []),
+
+        // Compression plugins (all environments)
         [
-          'vite-plugin-checker',
+          'vite-plugin-compression',
           {
-            eslint: {
-              lintCommand: 'eslint -c ./eslint.config.js "./src*/**/*.{js,mjs,cjs,vue}"',
-              useFlatConfig: true,
+            filter: /\.(js|json|css|htm|html|svg)$/i,
+            threshold: 10240,
+            algorithm: 'brotliCompress',
+            ext: '.br',
+            compressionOptions: {
+              params: {
+                [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY,
+                [zlib.constants.BROTLI_PARAM_MODE]: zlib.constants.BROTLI_MODE_TEXT,
+              },
             },
+            deleteOriginFile: false,
           },
-          { server: false },
         ],
+        [
+          'vite-plugin-compression',
+          {
+            filter: /\.(js|json|css|htm|html|svg)$/i,
+            threshold: 10240,
+            algorithm: 'gzip',
+            ext: '.gz',
+            compressionOptions: {
+              level: zlib.constants.Z_BEST_COMPRESSION,
+            },
+            deleteOriginFile: false,
+          },
+        ],
+        [createCopyWebConfigPlugin(environment, quasarMode, distFolder)], // Custom plugin
       ],
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#devserver
     devServer: {
-      // https: true,
+      https: true,
+      port: 8080,
+      strictPort: true, // Exits if port is already in use
       open: true, // opens browser window automatically
     },
 
