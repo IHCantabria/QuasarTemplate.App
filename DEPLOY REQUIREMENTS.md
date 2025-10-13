@@ -60,7 +60,7 @@ _Development_
 
 _Development_
 
-    - quasardemodev.ihcantabria.com/path
+    - quasardemodev.ihcantabria.com
 
 ## COMPILATION SCRIPT PROFILES
 
