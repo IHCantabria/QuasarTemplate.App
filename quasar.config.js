@@ -255,7 +255,7 @@ export default defineConfig((ctx) => {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'ih-tsusy',
+        appId: 'app-name',
       },
     },
 

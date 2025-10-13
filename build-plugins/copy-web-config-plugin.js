@@ -24,6 +24,6 @@ export const createCopyWebConfigPlugin = (environment, mode, distFolder) => ({
     const targetPath = path.join(distFolder, 'web.config')
     const content = readFileSync(webConfigSource)
     writeFileSync(targetPath, content)
-    console.log(`✅ Copied ${webConfigSource} → ${targetPath}`)
+    console.log(`Copied ${webConfigSource} → ${targetPath}`)
   },
 })
