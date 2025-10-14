@@ -111,8 +111,7 @@ See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-
 ### Built With
 
 - [Vue](https://vuejs.org/) - The progressive javascript framework
-- [Vite](https://vitejs.dev/) - Frontend Tooling
-- [Rollup](https://www.rollupjs.org/guide/en/) - Bundling
+- [Quasar](https://vuejs.org/) - The enterprise-ready cross-platform VueJs framework
 
 ### Credits
 
