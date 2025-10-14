@@ -32,7 +32,7 @@ onMounted(async () => {
 
 <template>
   <q-page class="column flex flex-center bg-gradient">
-    <img alt="App logo" src="~assets/quasar-logo-vertical.SVG" style="width: 120px; height: auto" />
+    <img alt="App logo" src="~assets/quasar-logo-vertical.svg" style="width: 120px; height: auto" />
     <h1 class="text-h5 text-center q-mt-md"> App Name </h1>
   </q-page>
 </template>
