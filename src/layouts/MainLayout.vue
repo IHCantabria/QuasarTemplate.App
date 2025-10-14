@@ -2,10 +2,10 @@
 import { useRouter, useRoute } from 'vue-router';
 import { ref } from 'vue';
 
-const router = useRouter()
-const route = useRoute()
+const router = useRouter();
+const route = useRoute();
 const goBack = () => {
-  router.go(-1)
+  router.go(-1);
 }
 
 const goToHome = () => {

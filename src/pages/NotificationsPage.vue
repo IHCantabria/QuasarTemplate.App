@@ -63,37 +63,30 @@ const notifications = ref([
     body: 'This is the body of notification 8.',
     timestamp: '2025-05-10 10:00 AM',
     days: 25,
-  },
+  }
 ])
 
 const todayNotifications = computed(() =>
-  notifications.value.filter((notification) => notification.days <= 1),
+  notifications.value.filter(notification => notification.days <= 1)
 )
 
 const lastWeekNotifications = computed(() =>
-  notifications.value.filter((notification) => notification.days > 1 && notification.days <= 7),
+  notifications.value.filter(notification => notification.days > 1 && notification.days <= 7)
 )
 
 const olderNotifications = computed(() =>
-  notifications.value.filter((notification) => notification.days > 7),
+  notifications.value.filter(notification => notification.days > 7)
 )
+
 </script>
 
 <template>
   <div class="q-pa-md">
     <!-- list only today's notifications based on timestamp -->
     <q-list style="width: 100%; max-width: 350px">
-      <q-item-label class="text-subtitle2 text-bold text-uppercase text-grey-7 q-py-md">
-        Today
-      </q-item-label>
-      <q-item
-        v-for="notification in todayNotifications"
-        :key="notification.id"
-        clickable
-        v-ripple
-        @click="onEventClick(notification.id)"
-        class="notification-card q-pa-md q-mb-sm"
-      >
+      <q-item-label class="text-subtitle2 text-bold text-uppercase text-grey-7 q-py-md"> Today </q-item-label>
+      <q-item v-for="notification in todayNotifications" :key="notification.id" clickable v-ripple
+        @click="onEventClick(notification.id)" class="notification-card q-pa-md q-mb-sm">
         <q-item-section>
           <q-item-label class="text-bold text-grey-9">{{ notification.title }}</q-item-label>
           <q-item-label lines>{{ notification.body }}</q-item-label>
@@ -105,17 +98,9 @@ const olderNotifications = computed(() =>
     </q-list>
     <!-- Last week notifications -->
     <q-list style="max-width: 350px" class="q-mt-lg">
-      <q-item-label class="text-subtitle2 text-bold text-uppercase text-grey-7 q-py-md">
-        Last Week
-      </q-item-label>
-      <q-item
-        v-for="notification in lastWeekNotifications"
-        :key="notification.id"
-        clickable
-        v-ripple
-        @click="onEventClick(notification.id)"
-        class="notification-card q-pa-md q-mb-sm"
-      >
+      <q-item-label class="text-subtitle2 text-bold text-uppercase text-grey-7 q-py-md"> Last Week </q-item-label>
+      <q-item v-for="notification in lastWeekNotifications" :key="notification.id" clickable v-ripple
+        @click="onEventClick(notification.id)" class="notification-card q-pa-md q-mb-sm">
         <q-item-section>
           <q-item-label class="text-bold text-grey-9">{{ notification.title }}</q-item-label>
           <q-item-label lines>{{ notification.body }}</q-item-label>
@@ -127,17 +112,9 @@ const olderNotifications = computed(() =>
     </q-list>
     <!-- Older than a week notifications -->
     <q-list style="max-width: 350px" class="q-mt-lg">
-      <q-item-label class="text-subtitle2 text-bold text-uppercase text-grey-7 q-py-md">
-        Older
-      </q-item-label>
-      <q-item
-        v-for="notification in olderNotifications"
-        :key="notification.id"
-        clickable
-        v-ripple
-        @click="onEventClick(notification.id)"
-        class="notification-card q-pa-md q-mb-sm"
-      >
+      <q-item-label class="text-subtitle2 text-bold text-uppercase text-grey-7 q-py-md"> Older </q-item-label>
+      <q-item v-for="notification in olderNotifications" :key="notification.id" clickable v-ripple
+        @click="onEventClick(notification.id)" class="notification-card q-pa-md q-mb-sm">
         <q-item-section>
           <q-item-label class="text-bold text-grey-9">{{ notification.title }}</q-item-label>
           <q-item-label lines>{{ notification.body }}</q-item-label>

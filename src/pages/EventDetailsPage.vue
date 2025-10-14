@@ -33,7 +33,7 @@
     </q-item-section>
     <q-item-section>
       <div class="custom-card custom-card--vertical text-grey-9">
-        <p class="text-h7 text-weight-bold q-mb-xs">Location Data</p>
+        <p class="text-h7 text-weight-bold q-mb-xs"> Location Data </p>
         <div class="custom-card__content">
           <div class="item">
             <p class="label">Latitude:</p>

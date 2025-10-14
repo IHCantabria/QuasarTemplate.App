@@ -177,9 +177,7 @@ const filter3 = ref(false);
   width: 100%;
   background-color: $blue-grey-3;
   z-index: -5;
-  transition:
-    height 0.3s ease-in-out,
-    visibility 0.3s ease-in-out;
+  transition: height 0.3s ease-in-out, visibility 0.3s ease-in-out;
 
   &--hidden {
     height: 0;

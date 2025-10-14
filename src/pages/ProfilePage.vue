@@ -31,7 +31,7 @@ const closeDialog = () => {
   <div class="mobile-only q-pa-md q-gutter-md">
     <!-- Logo & User Info -->
     <div class="brand  q-my-xl">
-      <img src="src/assets/quasar-logo-vertical.svg" alt="Logo" class="logo q-mb-md" />
+      <img src="~assets/quasar-logo-vertical.svg" alt="Logo" class="logo q-mb-md" />
       <q-card-section class="q-pa-none">
         <p class="text-h6 text-center">John Doe</p>
         <p class="text-subtitle2 text-grey text-center">john.doe@example.com</p>
@@ -41,7 +41,7 @@ const closeDialog = () => {
     <!-- Supporters club membership -->
     <div class="membership-container q-mt-md q-mb-lg">
       <div class="membership-container__icon">
-        <img src="public/icons/medal-star.svg" alt="Medal Star" class="medal-icon" style="height: 56px; width: auto;" />
+        <img src="icons/medal-star.svg" alt="Medal Star" class="medal-icon" style="height: 56px; width: auto;" />
       </div>
       <div class="membership-container__text">
         <p class="title">Suporters’ Club Membership</p>
@@ -52,28 +52,14 @@ const closeDialog = () => {
 
     <!-- Options menu -->
     <div class="profile-menu q-my-md">
-      <q-toggle
-        class="profile-menu__item profile-menu__item--toggle"
-        label="Notifications"
-        left-label
-        v-model="notificationsEnabled"
-      />
+      <q-toggle class="profile-menu__item profile-menu__item--toggle" label="Notifications" left-label
+        v-model="notificationsEnabled" />
       <q-separator />
-      <q-btn
-        flat
-        class="profile-menu__item profile-menu__item--link"
-        to="profile/about"
-        label="About"
-      >
+      <q-btn flat class="profile-menu__item profile-menu__item--link" to="profile/about" label="About">
         <q-icon name="sym_arrow_forward_ios" class="item__icon" />
       </q-btn>
       <q-separator />
-      <q-btn
-        flat
-        class="profile-menu__item profile-menu__item--link"
-        to="profile/disclaimer"
-        label="Disclaimer"
-      >
+      <q-btn flat class="profile-menu__item profile-menu__item--link" to="profile/disclaimer" label="Disclaimer">
         <q-icon name="sym_arrow_forward_ios" class="item__icon" />
       </q-btn>
 
@@ -92,7 +78,7 @@ const closeDialog = () => {
         <!-- Supporters club membership -->
         <div class="membership-container">
           <div class="membership-container__icon">
-            <img src="public/icons/medal-star.svg" alt="Medal Star" class="medal-icon q-mr-md"
+            <img src="icons/medal-star.svg" alt="Medal Star" class="medal-icon q-mr-md"
               style="height: 125px; width: auto;" />
           </div>
           <div class="membership-container__text" style="max-width: 500px;">
@@ -116,7 +102,7 @@ const closeDialog = () => {
             <q-card-section class="q-pa-none">
               <!-- Logo -->
               <div class="brand q-mb-md">
-                <img src="src/assets/quasar-logo-vertical.svg" alt="Logo" class="logo"
+                <img src="~assets/quasar-logo-vertical.svg" alt="Logo" class="logo"
                   style="width: 100px; height: auto;" />
               </div>
               <!-- Title -->
@@ -305,6 +291,7 @@ const closeDialog = () => {
         font-size: 16px;
         color: $grey-6;
       }
+
     }
 
     &--button {
@@ -319,6 +306,7 @@ const closeDialog = () => {
       background: $primary-gradient;
       color: white;
     }
+
   }
 }
 

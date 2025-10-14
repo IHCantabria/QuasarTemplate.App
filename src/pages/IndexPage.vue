@@ -20,13 +20,14 @@ const requestNotificationPermission = async () => {
       if (process.env.DEBUGGING) console.log('Notification permission denied.')
     }
   })
-}
+};
 
 onMounted(async () => {
   await requestNotificationPermission()
   // TODO: request here data needed for the app before entering
 
   router.push('/events')
+
 })
 </script>
 
@@ -39,11 +40,6 @@ onMounted(async () => {
 
 <style lang="css" scoped>
 .bg-gradient {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(17, 131, 255, 0.15) 50.84%,
-    rgba(17, 131, 255, 0.25) 101.68%
-  );
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(17, 131, 255, 0.15) 50.84%, rgba(17, 131, 255, 0.25) 101.68%);
 }
 </style>
