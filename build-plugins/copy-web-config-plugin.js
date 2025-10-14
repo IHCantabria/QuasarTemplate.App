@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import path from 'path'
 
 export const createCopyWebConfigPlugin = (environment, mode, distFolder) => ({
@@ -18,6 +18,12 @@ export const createCopyWebConfigPlugin = (environment, mode, distFolder) => ({
     if (!existsSync(webConfigSource)) {
       console.warn(`Web config file not found: ${webConfigSource}`)
       return
+    }
+
+    // Ensure the dist folder exists before writing
+    if (!existsSync(distFolder)) {
+      console.log(`Creating dist folder: ${distFolder}`)
+      mkdirSync(distFolder, { recursive: true })
     }
 
     // Copy the web.config to the dist folder
