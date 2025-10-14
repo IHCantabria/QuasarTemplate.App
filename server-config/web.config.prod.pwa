@@ -63,7 +63,7 @@
         </rule>
         <preConditions>
           <preCondition name="PreHashedFile">
-            <add input="{HTTP_URL}" pattern="ihash-.{8}\.\w+$" />
+            <add input="{HTTP_URL}" pattern="ihash-.{8}(?:\.\w+)+$" />
           </preCondition>
           <preCondition name="PreCompressedBrotli">
             <add input="{HTTP_URL}" pattern="\.br$" />

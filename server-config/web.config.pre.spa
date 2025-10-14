@@ -78,7 +78,7 @@
             <add input="{HTTP_URL}" pattern="index\.(htm|html)$" />
           </preCondition>
           <preCondition name="PreHashedFile">
-            <add input="{HTTP_URL}" pattern="ihash-.{8}\.\w+$" />
+            <add input="{HTTP_URL}" pattern="ihash-.{8}(?:\.\w+)+$" />
           </preCondition>
           <preCondition name="PreCompressedBrotli">
             <add input="{HTTP_URL}" pattern="\.br$" />
