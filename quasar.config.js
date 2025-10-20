@@ -213,7 +213,7 @@ export default defineConfig((ctx) => {
       // injectPwaMetaTags: false,
       // extendPWACustomSWConf (esbuildConf) {},
       extendGenerateSWOptions(cfg) {
-        cfg.exclude = [...(cfg.exclude || []), /web\.config$/]
+        cfg.globIgnores = [...(cfg.globIgnores || []), 'web.config']
       },
       // extendInjectManifestOptions (cfg) {}
     },
