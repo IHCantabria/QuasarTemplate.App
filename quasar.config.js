@@ -56,7 +56,7 @@ export default defineConfig((ctx) => {
         node: 'node22',
       },
 
-      vueRouterMode: 'hash',
+      vueRouterMode: 'hash', // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
@@ -212,7 +212,9 @@ export default defineConfig((ctx) => {
       // useCredentialsForManifestTag: true,
       // injectPwaMetaTags: false,
       // extendPWACustomSWConf (esbuildConf) {},
-      // extendGenerateSWOptions (cfg) {},
+      extendGenerateSWOptions(cfg) {
+        cfg.exclude = [...(cfg.exclude || []), /web\.config$/]
+      },
       // extendInjectManifestOptions (cfg) {}
     },
 
