@@ -39,6 +39,7 @@ yarn-error.log*
 *sonar.ps1
 .sonar
 .scannerwork
+.sonar-temp-download
 
 #Trivy
 .trivy
