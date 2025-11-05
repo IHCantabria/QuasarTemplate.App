@@ -2,16 +2,22 @@ import { defineStore, acceptHMRUpdate } from 'pinia'
 
 export const useLayoutsStore = defineStore('layouts', {
   state: () => ({
-    eventsListExpanded: false,
+    eventsListState: 'minimized', // 'full-height', 'minimized', 'hidden'
   }),
 
   getters: {
-    isEventsListExpanded: (state) => state.eventsListExpanded,
+    isEventsListFullHeight: (state) => state.eventsListState === 'full-height',
+    isEventsListMinimized: (state) => state.eventsListState === 'minimized',
+    isEventsListHidden: (state) => state.eventsListState === 'hidden',
   },
 
   actions: {
-    toggleEventsList() {
-      this.eventsListExpanded = !this.eventsListExpanded
+    setEventsListState(state) {
+      if (['full-height', 'minimized', 'hidden'].includes(state)) {
+        this.eventsListState = state
+      } else {
+        if (process.env.DEBUGGING) console.warn(`Invalid state "${state}" for eventsListState`)
+      }
     },
   },
 })

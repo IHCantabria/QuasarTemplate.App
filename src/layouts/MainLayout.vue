@@ -1,15 +1,15 @@
 <script setup>
-import { useRouter, useRoute } from 'vue-router';
-import { ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router'
+import { ref } from 'vue'
 
-const router = useRouter();
-const route = useRoute();
+const router = useRouter()
+const route = useRoute()
 const goBack = () => {
-  router.go(-1);
+  router.go(-1)
 }
 
 const goToHome = () => {
-  router.push('/');
+  router.push('/')
 }
 
 const onEventClick = (eventId) => {
@@ -21,99 +21,115 @@ const notifications = ref([
     title: 'Notification Title 1',
     description: 'Notification description 1',
     time: '2 mins ago',
-    read: false
+    read: false,
   },
   {
     id: 2,
     title: 'Notification Title 2',
     description: 'Notification description 2',
     time: '10 mins ago',
-    read: true
+    read: true,
   },
   {
     id: 3,
     title: 'Notification Title 3',
     description: 'Notification description 3',
     time: '1 hour ago',
-    read: false
+    read: false,
   },
   {
     id: 4,
     title: 'Notification Title 4',
     description: 'Notification description 4',
     time: 'Yesterday',
-    read: true
+    read: true,
   },
   {
     id: 5,
     title: 'Notification Title 5',
     description: 'Notification description 5',
     time: '2 days ago',
-    read: false
-  }, {
+    read: false,
+  },
+  {
     id: 6,
     title: 'Notification Title 6',
     description: 'Notification description 6',
     time: 'Last week',
-    read: true
+    read: true,
   },
   {
     id: 7,
     title: 'Notification Title 7',
     description: 'Notification description 7',
     time: 'Last month',
-    read: false
+    read: false,
   },
   {
     id: 8,
     title: 'Notification Title 8',
     description: 'Notification description 8',
     time: 'Last year',
-    read: true
+    read: true,
   },
   {
     id: 9,
     title: 'Notification Title 9',
     description: 'Notification description 9',
     time: '2 years ago',
-    read: false
+    read: false,
   },
   {
     id: 10,
     title: 'Notification Title 10',
     description: 'Notification description 10',
     time: 'A long time ago',
-    read: true
-  }
-]);
+    read: true,
+  },
+])
 
 const markAllAsRead = () => {
-  notifications.value.forEach(notification => {
-    notification.read = true;
-  });
+  notifications.value.forEach((notification) => {
+    notification.read = true
+  })
 }
-const filters = ref(false);
-const filter1 = ref(false);
-const filter2 = ref(false);
-const filter3 = ref(false);
+const filters = ref(false)
+const filter1 = ref(false)
+const filter2 = ref(false)
+const filter3 = ref(false)
 const openFilters = () => {
-  filters.value = true;
+  filters.value = true
 }
 </script>
 <template>
   <q-layout view="hHr LpR fFr">
     <!-- HEADER -->
     <q-header reveal bordered class="bg-white text-dark" height-hint="56">
-
       <!-- MOBILE ONLY -->
       <q-toolbar class="mobile-only navbar">
         <!-- Back button: show only if not on home page -->
-        <q-btn v-if="route?.path !== '/'" flat dense round icon="arrow_back" aria-label="Back" @click="goBack" />
+        <q-btn
+          v-if="route?.path !== '/'"
+          flat
+          dense
+          round
+          icon="arrow_back"
+          aria-label="Back"
+          @click="goBack"
+        />
         <!-- Current page title -->
-        <q-toolbar-title class="app-title">{{ route.meta.title ?? "" }}</q-toolbar-title>
+        <q-toolbar-title class="app-title">{{ route.meta.title ?? '' }}</q-toolbar-title>
         <!-- Filters button -->
-        <q-btn flat dense round icon="filter_list" aria-label="Filters" @click="openFilters"
-          class="q-mr-sm filters-icon visible" :class="{ hidden: route?.path !== '/events' }" />
+        <q-btn
+          flat
+          dense
+          round
+          icon="filter_list"
+          aria-label="Filters"
+          @click="openFilters"
+          class="q-mr-sm filters-icon visible"
+          :class="{ hidden: route?.path !== '/events' }"
+        />
       </q-toolbar>
 
       <!-- Filters drawer -->
@@ -151,7 +167,12 @@ const openFilters = () => {
         </q-list>
         <q-separator />
         <q-card-actions align="right">
-          <q-btn flat label="Reset" color="primary" @click="filter1 = false; filter2 = false; filter3 = false" />
+          <q-btn
+            flat
+            label="Reset"
+            color="primary"
+            @click="((filter1 = false), (filter2 = false), (filter3 = false))"
+          />
           <q-btn flat label="Apply" color="primary" @click="filters = false" />
         </q-card-actions>
       </q-drawer>
@@ -162,8 +183,14 @@ const openFilters = () => {
         <div class="navbar navbar__start">
           <!-- Logo: redirect to home page -->
           <q-avatar>
-            <img src="~assets/quasar-logo-vertical.svg" alt="Logo" height="60" class="navbar-icon cursor-pointer"
-              aria-label="Home" @click="goToHome" />
+            <img
+              src="~assets/quasar-logo-vertical.svg"
+              alt="Logo"
+              height="60"
+              class="navbar-icon cursor-pointer"
+              aria-label="Home"
+              @click="goToHome"
+            />
           </q-avatar>
           <q-separator vertical spaced />
 
@@ -182,10 +209,20 @@ const openFilters = () => {
             <p class="text-subtitle2 text-grey text-right">john.doe@example.com</p>
           </q-card-section>
           <!-- Buttons -->
-          <q-btn flat dense round icon="person" aria-label="Profile" to="/profile" class="q-mx-xs" />
+          <q-btn
+            flat
+            dense
+            round
+            icon="person"
+            aria-label="Profile"
+            to="/profile"
+            class="q-mx-xs"
+          />
           <!-- Notifications popup-->
           <q-btn dense color="primary" round icon="notifications" class="q-ml-md">
-            <q-badge color="red" floating v-if="notifications.length > 0">{{ notifications.length }}</q-badge>
+            <q-badge color="red" floating v-if="notifications.length > 0">{{
+              notifications.length
+            }}</q-badge>
             <q-menu fit>
               <!-- Notifications list -->
               <div v-if="notifications.length === 0" class="text-center" style="min-width: 250px">
@@ -195,14 +232,27 @@ const openFilters = () => {
               </div>
               <div v-else>
                 <div class="flex row justify-between q-pa-sm">
-                  <q-item-label header class="text-body1 text-bold text-dark q-pa-sm">Notifications</q-item-label>
-                  <q-btn flat dense label="Mark all as read" class="text-primary text-caption q-pa-sm"
-                    @click="markAllAsRead" />
+                  <q-item-label header class="text-body1 text-bold text-dark q-pa-sm"
+                    >Notifications</q-item-label
+                  >
+                  <q-btn
+                    flat
+                    dense
+                    label="Mark all as read"
+                    class="text-primary text-caption q-pa-sm"
+                    @click="markAllAsRead"
+                  />
                 </div>
                 <q-list style="min-width: 300px; max-height: 400px; overflow-y: auto">
                   <q-separator />
-                  <q-item v-for="notification in notifications" :key="notification.id" clickable v-ripple
-                    @click="onEventClick(notification.id)" :class="notification.read ? 'bg-white' : 'bg-grey-2'">
+                  <q-item
+                    v-for="notification in notifications"
+                    :key="notification.id"
+                    clickable
+                    v-ripple
+                    @click="onEventClick(notification.id)"
+                    :class="notification.read ? 'bg-white' : 'bg-grey-2'"
+                  >
                     <q-item-section>
                       <q-item-label class="text-weight-medium">
                         {{ notification.title }}
@@ -254,7 +304,6 @@ const openFilters = () => {
   align-items: center;
   justify-content: space-between;
 
-
   .app-title {
     text-align: center;
     width: 100%;
@@ -295,7 +344,6 @@ const openFilters = () => {
         flex-direction: row;
         align-items: baseline;
         gap: 0.25rem;
-
       }
     }
   }
