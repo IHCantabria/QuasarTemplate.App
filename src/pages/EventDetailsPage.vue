@@ -1,55 +1,84 @@
 <script setup>
-//
+import { useLayoutsStore } from '../stores/layouts-store'
+const layoutsStore = useLayoutsStore()
+
+const setEventsListBigger = () => {
+  if (layoutsStore.isEventsListMinimized) {
+    layoutsStore.setEventsListState('full-height')
+  } else if (layoutsStore.isEventsListHidden) {
+    layoutsStore.setEventsListState('minimized')
+  }
+}
+
+const setEventsListSmaller = () => {
+  if (layoutsStore.isEventsListFullHeight) {
+    layoutsStore.setEventsListState('minimized')
+  } else if (layoutsStore.isEventsListMinimized) {
+    layoutsStore.setEventsListState('hidden')
+  }
+}
 </script>
 
 <template>
-  <div class="q-pa-md">
-    <div class="flex justify-between items-top">
+  <div class="q-px-md">
+    <button
+      class="mobile-only my-button q-mb-sm"
+      v-touch-swipe.mouse.up="setEventsListBigger"
+      v-touch-swipe.mouse.down="setEventsListSmaller"
+    >
+      <q-icon name="maximize" />
+    </button>
+    <div v-if="!layoutsStore.isEventsListHidden">
+      <div class="flex justify-between items-top">
+        <q-item-section>
+          <q-item-label class="text-h6 text-bold text-grey-9">
+            Item {{ $route.params.id }}
+          </q-item-label>
+          <q-item-label lines> 2025-06-10 10:00 AM </q-item-label>
+        </q-item-section>
+        <q-item-section side top>
+          <q-badge color="red-2" label="Status 1" class="q-px-sm q-py-xs text-red" />
+        </q-item-section>
+      </div>
       <q-item-section>
-        <q-item-label class="text-h6 text-bold text-grey-9"> Item {{ $route.params.id }} </q-item-label>
-        <q-item-label lines> 2025-06-10 10:00 AM </q-item-label>
+        <div class="custom-card custom-card--horizontal bg-orange text-white">
+          <p class="text-h7 text-weight-medium q-mb-xs">Item Data</p>
+          <div class="custom-card__content">
+            <div class="item">
+              <p class="label">Value</p>
+              <p class="value">0.0</p>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="item">
+              <p class="label">Value</p>
+              <p class="value">0.0</p>
+            </div>
+          </div>
+        </div>
       </q-item-section>
-      <q-item-section side top>
-        <q-badge color="red-2" label="Status 1" class="q-px-sm q-py-xs text-red" />
+      <q-item-section>
+        <div class="custom-card custom-card--vertical text-grey-9">
+          <p class="text-h7 text-weight-bold q-mb-xs">Location Data</p>
+          <div class="custom-card__content">
+            <div class="item">
+              <p class="label">Latitude:</p>
+              <p class="value">0.0000</p>
+            </div>
+            <div class="item">
+              <p class="label">Longitude:</p>
+              <p class="value">0.0000</p>
+            </div>
+            <div class="item">
+              <p class="label">Location:</p>
+              <p class="value">Loren ipsun dolor sit ament</p>
+            </div>
+          </div>
+        </div>
       </q-item-section>
     </div>
-    <q-item-section>
-      <div class="custom-card custom-card--horizontal bg-orange text-white">
-        <p class="text-h7 text-weight-medium q-mb-xs"> Item Data </p>
-        <div class="custom-card__content">
-          <div class="item">
-            <p class="label">Value</p>
-            <p class="value">0.0</p>
-          </div>
-
-          <div class="separator"></div>
-
-          <div class="item">
-            <p class="label">Value</p>
-            <p class="value">0.0</p>
-          </div>
-        </div>
-      </div>
-    </q-item-section>
-    <q-item-section>
-      <div class="custom-card custom-card--vertical text-grey-9">
-        <p class="text-h7 text-weight-bold q-mb-xs"> Location Data </p>
-        <div class="custom-card__content">
-          <div class="item">
-            <p class="label">Latitude:</p>
-            <p class="value">0.0000</p>
-          </div>
-          <div class="item">
-            <p class="label">Longitude:</p>
-            <p class="value">0.0000</p>
-          </div>
-          <div class="item">
-            <p class="label">Location:</p>
-            <p class="value">Loren ipsun dolor sit ament</p>
-          </div>
-        </div>
-      </div>
-    </q-item-section>
+    <p v-else style="text-align: center">Swipe up to view event details</p>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -115,5 +144,17 @@
       }
     }
   }
+}
+
+.my-button {
+  border: none;
+  background: none;
+  height: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: $blue-grey-4;
 }
 </style>

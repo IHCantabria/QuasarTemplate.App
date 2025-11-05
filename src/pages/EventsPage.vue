@@ -16,7 +16,7 @@ const events = ref([
     time: 'Item description',
     type: 'Status',
     color: 'red-2',
-    textColor: 'red'
+    textColor: 'red',
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const events = ref([
     time: 'Item description',
     type: 'Status',
     color: 'red-2',
-    textColor: 'red'
+    textColor: 'red',
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const events = ref([
     time: 'Item description',
     type: 'Status',
     color: 'grey-4',
-    textColor: 'grey'
+    textColor: 'grey',
   },
   {
     id: 4,
@@ -40,7 +40,7 @@ const events = ref([
     time: 'Item description',
     type: 'Status',
     color: 'red-2',
-    textColor: 'red'
+    textColor: 'red',
   },
   {
     id: 5,
@@ -48,7 +48,7 @@ const events = ref([
     time: 'Item description',
     type: 'Status',
     color: 'grey-4',
-    textColor: 'grey'
+    textColor: 'grey',
   },
   {
     id: 6,
@@ -56,7 +56,7 @@ const events = ref([
     time: 'Item description',
     type: 'Status',
     color: 'red-2',
-    textColor: 'red'
+    textColor: 'red',
   },
   {
     id: 7,
@@ -64,7 +64,7 @@ const events = ref([
     time: 'Item description',
     type: 'Status',
     color: 'grey-4',
-    textColor: 'grey'
+    textColor: 'grey',
   },
   {
     id: 8,
@@ -72,7 +72,7 @@ const events = ref([
     time: 'Item description',
     type: 'Status',
     color: 'red-2',
-    textColor: 'red'
+    textColor: 'red',
   },
   {
     id: 9,
@@ -80,7 +80,7 @@ const events = ref([
     time: 'Item description',
     type: 'Status',
     color: 'grey-4',
-    textColor: 'grey'
+    textColor: 'grey',
   },
   {
     id: 10,
@@ -88,78 +88,107 @@ const events = ref([
     time: 'Item description',
     type: 'Status',
     color: 'red-2',
-    textColor: 'red'
-  }
+    textColor: 'red',
+  },
 ])
 
-const toggleList = () => {
-  layoutsStore.toggleEventsList()
+const setEventsListBigger = () => {
+  if (layoutsStore.isEventsListMinimized) {
+    layoutsStore.setEventsListState('full-height')
+  } else if (layoutsStore.isEventsListHidden) {
+    layoutsStore.setEventsListState('minimized')
+  }
 }
 
-const handleSwipe = () => {
-  layoutsStore.toggleEventsList()
+const setEventsListSmaller = () => {
+  if (layoutsStore.isEventsListFullHeight) {
+    layoutsStore.setEventsListState('minimized')
+  } else if (layoutsStore.isEventsListMinimized) {
+    layoutsStore.setEventsListState('hidden')
+  }
 }
 </script>
 
 <template>
-  <div v-touch-swipe.mouse.up.down="handleSwipe" class="q-pa-md events-container"
-    :class="layoutsStore.isEventsListExpanded ? 'full-height' : ''">
-    <!-- add expand event on swipe top -->
-    <button @click="toggleList" class="my-button q-mb-sm mobile-only" aria-label="Expand/Collapse events list">
-      <q-icon :name="layoutsStore.isEventsListExpanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'" />
-    </button>
-    <q-list style="width: 100%; max-width: 350px">
-      <q-item v-for="event in events" :key="event.id" clickable v-ripple @click="onEventClick(event.id)"
-        class="event-card q-pa-md q-mb-sm">
-        <q-item-section>
-          <q-item-label class="text-bold text-grey-9">
-            {{ event.title }}
-          </q-item-label>
-          <q-item-label caption>{{ event.time }}</q-item-label>
-        </q-item-section>
-        <q-item-section side top>
-          <q-badge :color="event.color" :text-color="event.textColor" :label="event.type" class="q-px-sm q-py-xs" />
-        </q-item-section>
-      </q-item>
-    </q-list>
+  <!-- add expand event on swipe top -->
+  <button
+    v-touch-swipe.mouse.up="setEventsListBigger"
+    v-touch-swipe.mouse.down="setEventsListSmaller"
+    class="my-button q-mb-sm mobile-only"
+    aria-label="Expand/Collapse events list"
+  >
+    <q-icon name="maximize" />
+  </button>
+  <div class="events-container max-height q-mx-md">
+    <div v-if="!layoutsStore.isEventsListHidden">
+      <q-list style="width: 100%">
+        <q-item
+          v-for="event in events"
+          :key="event.id"
+          clickable
+          v-ripple
+          @click="onEventClick(event.id)"
+          class="event-card q-pa-md q-mb-sm"
+        >
+          <q-item-section>
+            <q-item-label class="text-bold text-grey-9">
+              {{ event.title }}
+            </q-item-label>
+            <q-item-label caption>{{ event.time }}</q-item-label>
+          </q-item-section>
+          <q-item-section side top>
+            <q-badge
+              :color="event.color"
+              :text-color="event.textColor"
+              :label="event.type"
+              class="q-px-sm q-py-xs"
+            />
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </div>
+    <p v-else style="text-align: center">Swipe up to view events</p>
   </div>
 </template>
 <style lang="scss" scoped>
-.full-height {
+.panel-container {
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  overflow-y: auto;
+}
+
+.max-height {
+  flex: 1;
+  min-height: 0;
 }
 
 .events-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .my-button {
   border: none;
-  border-radius: 100%;
   background: none;
   height: 20px;
-  width: 20px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: $blue-grey-4;
-
-  &:hover {
-    color: $blue-grey-6;
-    background-color: $blue-grey-2;
-    transform: scale(1.05);
-    transition: transform 0.2s;
-  }
 }
 
 .event-card {
   background-color: $grey-2;
   border-radius: 8px;
   width: 100%;
+
+  &--selected {
+    background-color: $grey-5;
+  }
 }
 </style>
